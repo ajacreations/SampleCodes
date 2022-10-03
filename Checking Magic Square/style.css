@@ -1,0 +1,65 @@
+body {
+	background-color: #CCCCCC; /*Adding a background color behind the background image */
+	background-image: url("https://www.dropbox.com/s/epms1utmzma3z4t/motherboard.jpg?raw=1"); /*An image of a motherboard */
+	background-position: center; /*centering body in browser window*/
+	background-size: cover;
+	border: 2px solid #262626; /*Adding a dark grey border to body */
+	box-shadow: 0px 5px 15px 5px black; /*Adds a shadow to the right, bottom, and left of body */
+	font-family: 'Song Myung', serif; /* Format font family */
+	margin: 5%; /*Adding a margin around the entire body */
+}
+
+header {
+	border-bottom: 2px solid #262626; /* Adding border below the header */
+	background: linear-gradient(45deg, #666666, #333333, #0D0D0D); /* Gradient background in the header */
+	color: #F2F2F2;
+	text-align: center;
+	overflow: auto;
+	padding: 10px;
+	letter-spacing: 1px;
+}
+
+/*Adjust the font size for h1 */
+h1{
+	font-size: 300%;
+}
+
+/* Increasing the size of the h2 and h3 fonts slightly */
+h2, h3 {
+	font-size: 120%;
+}
+
+/* Formatting the first letter the first heading in the div first line section */
+.intro::first-letter {
+    font-size: 150%;
+}
+
+/* Adding padding and a different background color to the section class */
+section{
+	padding: 20px;	
+	background-color: rgba(217, 217, 217, 0.9); /* A light grey background */
+	color: black;
+}
+
+/* Modify the table */
+table {
+	width: 60%;
+	margin: auto;
+}
+
+/* Modify the table cells */
+td {
+	height: 65px;
+	width: 20%;
+	vertical-align: center;
+	border: 1px solid black;
+	font-weight: bold;
+	font-size: larger;
+}
+
+/* Center the magic numbers information */
+.magic-numbers {
+	width: 90%;
+	margin: auto
+	/* text-align: center; */
+}

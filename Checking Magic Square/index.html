@@ -1,0 +1,50 @@
+<head>
+    <title>Hrushi's Magic Square</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/style.css">
+    <!-- Link to external style sheet -->
+    <link href="https://fonts.googleapis.com/css?family=Song+Myung" rel="stylesheet">
+    <!-- Google fonts -->
+    <script src="/script.js"></script>
+  
+  </head>
+  
+  <body>
+    <header>
+      <h1>Hrushi's Magic Square</h1>
+      <!-- Page header -->
+    </header>
+  
+    <section>
+      <div class="magic-numbers">
+        <h2>Enter nine numbers, and Hrushi will check if the numbers form a magic square.<br><br> A magic square exists when all the rows, columns, and diagonals of a square add up to the same number.</h2>
+  
+        <!-- This button is a call to JS function input() -->
+        <p><button type="button" onclick="input()">Enter the magic numbers</button></p>
+  
+        <!-- Create a table with three rows and three columns, plus space to display the answers -->
+        <table>
+          <tr>
+            <td><span id="sq1"> </span></td>
+            <td><span id="sq2"> </span></td>
+            <td><span id="sq3"> </span></td>
+          </tr>
+          <tr>
+            <td><span id="sq4"> </span></td>
+            <td><span id="sq5"> </span></td>
+            <td><span id="sq6"> </span></td>
+          </tr>
+          <tr>
+            <td><span id="sq7"> </span></td>
+            <td><span id="sq8"> </span></td>
+            <td><span id="sq9"> </span></td>
+          </tr>
+        </table>
+  
+        <p><button type="button" onclick="checkForMagic()">Check if it is a magic square</button></p>
+        <h2><span id="title"> </span></h2>
+        <h2><span id="results"> </span></h2>
+  
+      </div>
+    </section>
+  </body>
