@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block one %}
+{% if user.is_authenticated %}
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+{% endif %}
+<style>
+  body{
+
+    margin:auto;
+    background-color:#132D46;
+    color:white;
+  }
+  .back{
+    position:absolute;
+    left:20px;
+  }
+  form{
+    width:50%;
+    margin-left:25%;
+  }
+</style>
+<a  class="back" href="{% url 'main' %}" ><button type="button" class="btn btn-light"><i style="font-size:24px" class="fa">&#xf0a8;</i></button></a>
+<h1 class="text-center"> {{ user.username }}'s New Task</h1><br>
+
+<form  method='POST'  class="text-center">
+    {% csrf_token %}
+<div class="mb-3">
+  <label for="atask" class="form-label"><strong>TASK TITLE</strong></label>
+  <input type="text" class="form-control" id="atask" name='atask' Required >
+</div>
+
+<div class="mb-3">
+  <label for="desc" class="form-label"><strong>TASK DESCRIPTION</strong></label>
+  <textarea name="desc" class="form-control" name='desc' id="desc" cols="3" rows="2" Required></textarea>
+</div>
+<div class="mb-3">
+  <label for="due_date"><strong>DUE DATE</strong></label>
+  <input type="date" id="due_date" name="due_date" Required>
+</div>
+<div class="mb-3">
+  <label for="status"><strong>STATUS</strong></label>
+  <select class="form-select" aria-label="Default select example" id="status" name="status" Required>
+    <option selected>Open</option>
+    <option value="In-Progress">In-Progress</option>
+    <option value="Closed">Closed</option>
+    <option value="Hold">Hold</option>
+  </select>
+</div>
+
+
+
+<button type="submit" class="btn btn-success">ADD TASK</button>
+</form>
+{% else %}
+<h3>You must be Logged-in </h3>
+{% endif %}
+{% endblock one %}

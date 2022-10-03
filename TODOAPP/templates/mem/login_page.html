@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block one %}
+<style>
+  body{
+    
+    margin:auto;
+    text-align:center important;
+    background-color:#132D46;
+    color:white;
+  }
+  .back{
+    position:absolute;
+    left:20px;
+  }
+  
+</style>
+<a  class="back" href="{% url 'main' %}" ><button type="button" class="btn btn-light"><i style="font-size:24px" class="fa">&#xf0a8;</i></button></a>
+<h1 class="text-center">Login</h1>
+
+<form  method='POST'  class="text-center">
+    {% csrf_token %}
+<div class="mb-3">
+  <label for="username" class="form-label">Userame</label>
+  <input type="text" class="form-control" name='username'style="width:50%;margin-left:25%;" >
+</div>
+
+<div class="mb-3">
+  <label for="pass" class="form-label">Password</label>
+  <input type="password" class="form-control" name='pass' style="width:50%;margin-left:25%;">
+</div>
+
+<button type="submit" class="btn btn-success">Submit</button><br><br><br><br><br><br><br>
+</form>
+
+{% endblock one %}
