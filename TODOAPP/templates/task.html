@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block one %}
+{% if user.is_authenticated %}
+<style>
+html, body {
+max-width: 100% !important;
+
+}
+</style>
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+{% endif %}
+
+<h1>Your Tasks:</h1>
+
+<table class="table">
+<thead>
+<tr>
+<th scope="col">TASK</th>
+<th scope="col">DESCRIPTRION</th>
+<th scope="col">CReated on</th>
+<th scope="col">due on</th>
+<th scope="col">status</th>
+
+</tr>
+</thead>
+<tbody>
+{% for fun in tasks %}
+{% if fun.person == request.user %}
+<tr>
+
+<td>{{fun.task}}</td>
+<td>{{fun.desc}}</td>
+<td>{{fun.time}}</td>
+<td>{{fun.due}}</td>
+<td>{{fun.status}}</td>
+<td><a href="{% url 'del-task' fun.id %}" ><button type="button">Del</button></a></td>
+<td><a href="{% url 'update-task' fun.id %}" ><button type="button">update</button></a></td>
+</tr>
+{% endif %}
+{% endfor %}
+
+</tbody>
+</table>
+
+{% else %}
+<h3>You must be Logged-in </h3>
+{% endif %}
+{% endblock one %}

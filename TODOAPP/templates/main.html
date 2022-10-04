@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% block one %}
+{% if user.is_authenticated %}
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+{% endif %}
+{% comment %} --------------------------------------------------------------------------------------------------for my user {% endcomment %}
+<style>
+  body{
+    background-color:#132D46;
+    color:white;
+  }
+  {% comment %} -----TOP-------- {% endcomment %}
+  .add{
+    position:absolute;
+    left:30px;
+    margin-top:20px;
+  }
+  .add:hover{
+    opacity:0.75;
+  }
+  .log{
+    position:absolute;
+    right:40px;
+    margin-top:20px;
+  }
+  {% comment %} -------mid------ {% endcomment %}
+  .card{
+    margin-bottom:20px;
+    text-align:center;
+    color:black;
+    background-color:#01C38D;
+    border-radius:15px;
+  }
+  .card:hover{
+    opacity:0.75;
+  }
+  {% comment %} ----------more large screen------- {% endcomment %}
+  @media only screen and (max-width: 730px) {
+    .cc {
+     margin-left:72px;
+    }
+    
+  }
+  {% comment %} ---------large scren----- {% endcomment %}
+  @media only screen and (max-width: 430px) {
+    .cc {
+     margin-left:35px;
+    }
+    .log{
+      position:absolute;
+      right:20px;
+    }
+  }
+  {% comment %} ----------smallscreen------- {% endcomment %}
+  @media only screen and (max-width: 320px) {
+    .cc {
+     margin-left:0;
+    }
+    
+  }
+</style>
+
+<div class="container-fluid top">
+  <a  class="add " href="{% url 'home' %}" ><button type="button" class="btn btn-warning" >Add Task</button></a>
+  <a  class="log" href="{% url 'no_more_work' %}" ><button type="button" class="btn btn-secondary">Logout</button></a>
+  <br><br><br>
+<h1 class="text-center">Welcome {{ user.username }}</h1><br>
+
+</div>
+
+
+<div class="container cc">
+  <div class="row">
+
+{% for fun in tasks %}
+{% if fun.person == request.user %}
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{ fun.task }}</h5>
+          <p class="card-text">{{ fun.desc }}</p>
+          <p class="card-text"><strong>Created on: </strong>{{ fun.time }}</p>
+          <p class="card-text"><strong>Due on: </strong>{{ fun.due }}</p>
+          <p class="card-text"><strong>Status: </strong>{{ fun.status }}</p>
+          <a  href="{% url 'update-task' fun.id %}" ><button type="button" class="btn btn-warning">Edit</button></a>
+          <a  href="{% url 'del-task' fun.id %}" ><button type="button" class="btn btn-danger"><i style="font-size:24px" class="fa">&#xf014;</i></button></a>
+          
+        </div>
+      </div>
+    </div>
+{% endif %}
+{% endfor %}
+    
+  </div>
+</div>
+
+
+{% else %}
+<style>
+  .add_no{
+    margin-top:20px;
+    position:absolute;
+    right:15%;
+  }
+  .log_no{
+    margin-top:20px;
+    position:absolute;
+    right:5%;
+  }
+  body{
+    background-color:#132D46;
+    color:white;
+  }
+  {% comment %} ----------more large screen------- {% endcomment %}
+  @media only screen and (max-width: 910px) {
+    .add_no{
+      position:absolute;
+      right:20%;
+    }
+    .log_no{
+      position:absolute;
+      right:5%;
+    }
+    
+  }
+  {% comment %} ---------large scren----- {% endcomment %}
+  @media only screen and (max-width: 615px) {
+    .add_no{
+      position:absolute;
+      left:5%;
+    }
+    .log_no{
+      position:absolute;
+      right:5%;
+    }
+  }
+  {% comment %} ----------smallscreen------- {% endcomment %}
+  
+  
+</style>
+<div class="container-fluid ">
+  <a  class="add_no" href="{% url 'works' %}" ><button type="button" class="btn btn-success">Login</button></a>
+  <a  class="log_no" href="{% url 'register-user' %}" ><button type="button" class="btn btn-secondary">Sign Up</button></a>
+  <br><br>
+<br>
+<h3>Tired of forgetting important work...</h3>
+<h1>Now no more forgetting</h1>
+<h2>A platform for managing all your tasks<h2>
+<h1>Hurry Up!!! Create Your Account Today</h1>
+<br><br><br><br><br><br>
+</div>
+
+{% endif %}
+{% endblock one %}

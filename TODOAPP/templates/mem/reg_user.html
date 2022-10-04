@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block one %}
+<style>
+    body{
+      
+      margin:auto;
+      text-align:center;
+      background-color:#132D46;
+      color:white;
+    }
+    .back{
+      position:absolute;
+      left:20px;
+    }
+    form{
+        width:50%;
+        margin-left:25%;
+      }
+    
+  </style>
+  <a  class="back" href="{% url 'main' %}" ><button type="button" class="btn btn-light"><i style="font-size:24px" class="fa">&#xf0a8;</i></button></a>
+<h1 class="text-center">Register Here</h1>
+
+<form  method='POST'  action="{% url 'register-user' %}">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    
+    <button type="submit" class="btn btn-success end">Submit</button><br>
+
+</form>
+
+{% endblock one %}
