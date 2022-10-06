@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO APP IN BOOTSTRAP</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+        rel="stylesheet" />
+    <style>
+        .back_image {
+            /* background:linear-gradient(rgb(243, 109, 131),rgb(187, 72, 91)); */
+            background: url(https://images.pexels.com/photos/4906196/pexels-photo-4906196.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            height: 100vh;
+            width: 100%;
+            display: grid;
+            place-items: center;
+        }
+
+        .todo {
+            color: white;
+            background-color: rgba(0, 0, 0, 0.295);
+            padding: 10px;
+            box-shadow: 3px -2px 10px #f8f9fa54;
+            border-radius: 5px;
+            min-width: 35vw;
+            min-height: 55vh;
+
+        }
+
+        .todo h3 {
+            font-family: cursive;
+
+        }
+
+        .input_background,
+        .todo_lists {
+            background-color: rgba(0, 0, 0, 0.534);
+            border-radius: 5px;
+            display: grid;
+            grid-auto-flow: column;
+            grid-column-gap: 1vw;
+
+            align-items: center;
+            grid-template-columns: 3fr 1fr;
+        }
+
+        .input_field {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            border-bottom: #f8f9fa 1px solid;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Start your project here-->
+    <section class="back_image">
+        <div class="todo">
+            <h3 class="text-center p-3">To Do List
+                <i class="fas fa-list"></i>
+            </h3>
+            <form id="todo_form">
+                <div class="form-group p-3 input_background">
+                    <input type="text" placeholder="Add Todo" class="input_field" id="todo_input" required />
+                    <button class="btn btn-success" type="submit">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </form>
+            <!-- Generating todo dynamically -->
+            <ul class="m-0 p-0" id="todoItems"></ul>
+        </div>
+    </section>
+    <SCript defer>
+        const todo_form = document.getElementById("todo_form");
+        const todo_input = document.getElementById("todo_input");
+        const todoItems = document.getElementById("todoItems");
+        const arr = [];
+        todo_form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            arr.push({ todo_items: todo_input.value });
+            load_Function(arr);
+            todo_form.reset();
+        });
+
+        function load_Function(arr) {
+            let todoHtml = ``;
+            arr.forEach((item, index) => {
+                todoHtml += `
+          <li class="todo_lists p-3 m-1">
+            <h6 style="font-size: 24px; font-family: cursive;">${item.todo_items}</h6>
+            
+            <button class="btn btn-danger delete" id="${index}" >
+              <i class="fas fa-trash"></i>
+            </button>
+            
+          </li>
+          `;
+            });
+            todoItems.innerHTML = todoHtml;
+            //  delete to do lists
+            const deleteBtns = document.querySelectorAll(".delete");
+            deleteBtns.forEach((deleteBtn, index) => {
+                deleteBtn.addEventListener("click", function (e) {
+                    arr.splice(e.target.id, 1);
+                    console.log(e.target.id);
+                    load_Function(arr);
+                });
+            });
+        }
+    </SCript>
+</body>
+
+</html>
