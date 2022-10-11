@@ -335,7 +335,7 @@ function removeToDo(element){
 
 list.addEventListener("click", function(event){
 	
-    const element = event.target; //return the clicked element inside the list
+    const element = event.target;     //return the clicked element inside the list
     const elementJob = element.attributes.job.value; //complete or delete
 
     if(elementJob == "complete"){
@@ -344,7 +344,7 @@ list.addEventListener("click", function(event){
         removeToDo(element);
     }
     
-    //add item from localstorage
+    //add item from localstorage    
     localStorage.setItem("TODO", JSON.stringify(LIST));
 
 });
